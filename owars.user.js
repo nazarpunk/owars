@@ -3,13 +3,13 @@
 // @description Херабора
 // @author nazarpunk
 // @license MIT
-// @version 0.03
+// @version 0.04
 // @include /^https?:\/\/.+\.owars\.ru.*$/
 // @grant GM_xmlhttpRequest
 // @grant unsafeWindow
 // @connect gorsaldo.xyz
 // @noframes
-// @run-at document-start
+// @run-at document-idle
 // @updateURL https://github.com/nazarpunk/owars/raw/master/owars.user.js
 // @source https://vk.com/nazarpunk
 // ==/UserScript==
@@ -484,8 +484,10 @@ function getUni() {
 	return uni
 }
 
-init_script = function () {
+init_script = () => {
+	console.log(`init`, window.name);
 	if (window.name == "Mainframe") {
+
 		if (getUserData("is_vova_userscript_on") != "true") return;
 		var trs = document.getElementsByTagName("tr");
 		for (var i = 0; i < trs.length; i++) {
@@ -1991,11 +1993,4 @@ function show_t(titan, krem, toplivo) {
 	return escape("<table width=&quot;100%&quot;><tr><td class=&quot;c&quot; colspan=&quot;2&quot;>Ресурсы на планете</td></tr><tr><td>Титан: " + titan + "</td></tr><tr><td>Кремний: " + krem + "</td></tr><tr><td>Топливо: " + toplivo + "</td></tr></table>")
 }
 
-window.onload = function () {
-	try {
-		init_script()
-	} catch (w) {
-		if (show_errors) "init_script error: " + alert(w.message)
-	}
-};
-
+init_script();
