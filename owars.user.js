@@ -3,7 +3,7 @@
 // @description Херабора
 // @author nazarpunk
 // @license MIT
-// @version 0.02
+// @version 0.03
 // @include /^https?:\/\/.+\.owars\.ru.*$/
 // @grant GM_xmlhttpRequest
 // @grant unsafeWindow
