@@ -3,14 +3,14 @@
 // @description Херабора
 // @author nazarpunk
 // @license MIT
-// @version 0.01
+// @version 0.02
 // @include /^https?:\/\/.+\.owars\.ru.*$/
 // @grant GM_xmlhttpRequest
 // @grant unsafeWindow
 // @connect gorsaldo.xyz
 // @noframes
 // @run-at document-start
-// @updateURL
+// @updateURL https://github.com/nazarpunk/owars/raw/master/owars.user.js
 // @source https://vk.com/nazarpunk
 // ==/UserScript==
 
