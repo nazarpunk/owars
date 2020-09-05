@@ -1,0 +1,23 @@
+{
+  "name": "owars.ru",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": [],
+  "author": "nazarpunk",
+  "contributors": [],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/chrome": "0.0.122",
+    "colors": "^1.4.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify-es": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "npm": "^7.0.0-beta.6",
+    "typescript": "^4.0.2"
+  }
+}
