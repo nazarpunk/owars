@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Кастом для owars.ru",
   "homepage_url": "http://gorsaldo.xyz",
-  "update_url": "http://gorsaldo.xyz/extension-owars/updates.xml",
+  "update_url": "https://github.com/nazarpunk/owars/blob/master/updates.xml",
   "minimum_chrome_version": "83",
   "icons": {
     "16": "img/ico/ext-16.png",
