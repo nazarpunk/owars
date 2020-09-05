@@ -1,3 +1,3 @@
 # owars
 
-[Установить](https://github.com/nazarpunk/owars/blob/master/extension.crx).
+[Установить](https://github.com/nazarpunk/owars/blob/master/extension.crx?raw=true).
