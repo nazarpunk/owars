@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "owars",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Кастом для owars.ru",
-  "homepage_url": "http://gorsaldo.xyz",
+  "homepage_url": "https://github.com/nazarpunk/owars",
   "update_url": "https://github.com/nazarpunk/owars/blob/master/updates.xml",
   "minimum_chrome_version": "83",
   "icons": {
