@@ -2,39 +2,49 @@
 
 const {watch, task, src, dest} = require('gulp'),
       {yellow, gray}           = require(`colors/safe`),
-      {log}                    = require(`gulp-util`),
+      sass                     = require(`gulp-sass`),
       sourcemaps               = require(`gulp-sourcemaps`),
       ts                       = require(`gulp-typescript`),
-      error                    = error => {log(yellow(error.toString()))};
+      error                    = error => {console.log(yellow(error.toString()))},
+      scss_glob                = [`**/*.scss`, `!**/_*.scss`, `!node_modules/**/*`],
+      uglify                   = require(`gulp-uglify-es`).default,
+      scss_task                = src =>
+	      src.pipe(sourcemaps.init())
+	         .pipe(sass()).on(`error`, error)
+	         .pipe(sourcemaps.write())
+	         .pipe(dest('.')),
+      ts_glob                  = [`**/*.ts`, `!**/*.d.ts`, `!node_modules/**/*`],
+      ts_task                  = src => src
+	      .pipe(sourcemaps.init())
+	      .pipe(ts.createProject(`tsconfig.json`)()).on(`error`, error)
+	      .pipe(uglify()).on(`error`, error)
+	      .pipe(sourcemaps.write())
+	      .pipe(dest(`.`));
 
 task(`watch`, cb => {
 	// callback
 	cb();
 
 	// scss
-	const sass = require(`gulp-sass`);
-	watch([`**/*.scss`, `!**/_*.scss`, `!node_modules/**/*`], {queue: false}).on(`change`, path => {
-		log(gray(path));
-		src(path)
-			.pipe(sourcemaps.init())
-			.pipe(sass()).on(`error`, error)
-			.pipe(sourcemaps.write())
-			.pipe(dest('.'));
+	watch(scss_glob).on(`change`, path => {
+		console.log(gray(path));
+		scss_task(src(path, {base: `.`, sourcemaps: true}));
 	});
 
 	// ts
-	const fs       = require(`fs`);
-	const tsconfig = JSON.parse(fs.readFileSync(`tsconfig.json`));
-	watch([`**/*.ts`, `!**/*.d.ts`, `!node_modules/**/*`], {queue: false}).on(`change`, path => {
-		log(gray(path));
-		src(path)
-			.pipe(sourcemaps.init())
-			.pipe(ts(tsconfig.compilerOptions)).on(`error`, error)
-			.pipe(sourcemaps.write())
-			.pipe(dest(`.`));
+	watch(ts_glob).on(`change`, path => {
+		console.log(gray(path));
+		ts_task(src(path, {base: `.`, sourcemaps: true}));
 	});
 
 });
 
-const tsProject = ts.createProject('extension-opera/extension/tsconfig.json');
-task('ts', () => tsProject.src().pipe(tsProject()).js.pipe(dest(file => file.base)));
+task(`scss`, cb => {
+	cb();
+	scss_task(src(scss_glob, {base: `.`, sourcemaps: true}));
+});
+
+task(`ts`, cb => {
+	cb();
+	ts_task(src(ts_glob, {base: `.`, sourcemaps: true}));
+});

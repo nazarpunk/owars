@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d181a099-773b-4b14-bb0d-d3d673878b58" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/extension/update.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/extension/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/updates.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/js/content/content.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/js/content/content.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/js/content/content.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/js/content/content.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/page/option/overview/overview.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/option/overview/overview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/page/option/overview/overview.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/option/overview/overview.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/page/page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/page/page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/gulpfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,20 +43,23 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="14.8.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="14.6.4" />
+    <property name="javascript.nodejs.core.library.configured.version" value="15.4.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.14" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/extension" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Subversion.SSH" />
-    <property name="ts.external.directory.path" value="C:\Users\nazarpunk\PhpstormProjects\owars\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/extension" />
       <recent name="C:\Users\nazarpunk\PhpstormProjects\owars" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -103,6 +113,13 @@
       <workItem from="1599296069214" duration="2425000" />
       <workItem from="1599312642853" duration="887000" />
       <workItem from="1599321997013" duration="5399000" />
+      <workItem from="1608229359609" duration="132000" />
+      <workItem from="1608229503951" duration="262000" />
+      <workItem from="1608230162278" duration="39000" />
+      <workItem from="1608230225923" duration="1151000" />
+      <workItem from="1609106890374" duration="5000" />
+      <workItem from="1609106910402" duration="4210000" />
+      <workItem from="1609111191025" duration="45000" />
     </task>
     <task id="LOCAL-00001" summary="extension">
       <created>1599325694639</created>
@@ -157,8 +174,22 @@
         <option value="$PROJECT_DIR$/extension/js/background/background.js" />
         <option value="$PROJECT_DIR$/extension/page/page.js" />
         <option value="$PROJECT_DIR$/extension/page/option/menu/menu.js" />
+        <option value="$PROJECT_DIR$/extension/page/page.js.map" />
+        <option value="$PROJECT_DIR$/extension/page/page.js" />
       </list>
     </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -166,31 +197,5 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="extension" />
     <option name="LAST_COMMIT_MESSAGE" value="extension" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="585" y="106" key="CommitChangelistDialog2" timestamp="1599327292260">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="585" y="106" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599327292260" />
-    <state width="345" height="435" key="GridCell.Tab.0.bottom" timestamp="1599313530639">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="345" height="435" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599313530639" />
-    <state width="345" height="435" key="GridCell.Tab.0.center" timestamp="1599313530638">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="345" height="435" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599313530638" />
-    <state width="345" height="435" key="GridCell.Tab.0.left" timestamp="1599313530638">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="345" height="435" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599313530638" />
-    <state width="345" height="435" key="GridCell.Tab.0.right" timestamp="1599313530639">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="345" height="435" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599313530639" />
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2" timestamp="1599327295199">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="251" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599327295199" />
   </component>
 </project>
