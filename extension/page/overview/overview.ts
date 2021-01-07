@@ -1,18 +1,5 @@
 {
-	const alarmSound                   = new Audio('https://q4dizzy.ru/alarm.wav'),
-	      planetaryUrl                 = `/?option=overview`,
-	      get_page                     = (url: string, callback: any) => {
-		      const request = new XMLHttpRequest();
-		      request.open(`get`, url, true);
-		      request.responseType = `document`;
-		      request.send(null);
-		      request.onload = () => {
-			      if (request.readyState === 4) {
-				      if (request.status === 200) callback(request);
-				      else console.error(request.statusText);
-			      }
-		      };
-	      }, getSecondsFromRaw         = (raw: string) => {
+	const get_seconds_from_raw         = (raw: string) => {
 		      let rawArr       = raw.split(` `),
 		          totalSeconds = 0;
 
@@ -27,11 +14,11 @@
 		      }
 
 		      return totalSeconds;
-	      }, formatDate                = (time: Date) => {
-		      return new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().replace('T', ' ').substring(0, 19);
-	      }, getHumanTimestamp         = (timestamp: number) => {
+	      },
+	      date_format                  = (time: Date) => new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().replace('T', ' ').substring(0, 19),
+	      getHumanTimestamp            = (timestamp: number) => {
 		      const date = new Date(timestamp * 1000);
-		      return formatDate(new Date(
+		      return date_format(new Date(
 			      date.getFullYear(),
 			      date.getMonth(),
 			      date.getDate(),
@@ -39,29 +26,18 @@
 			      date.getMinutes(),
 			      date.getSeconds()
 		      ));
-	      }, checkAttack               = () => {
-		      get_page(planetaryUrl, (data: XMLHttpRequest) => {
-			      const row = data.response.querySelectorAll("tr[style]");
-
-			      for (let i = 0; i < row.length; i++) {
-				      if (row[i].style.color === 'rgb(255,73,74)') {
-					      alarmSound.play();
-					      return;
-				      }
-			      }
-		      });
 	      }, updatePlaneraryServerTime = () => {
+
 		      const th = document.querySelector<HTMLTableHeaderCellElement>('th[colspan="3"]');
 		      if (th === null) return;
 		      const serverTime = new Date(th.innerHTML);
 		      setInterval(function () {
 			      serverTime.setSeconds(serverTime.getSeconds() + 1);
-			      th.innerHTML = formatDate(serverTime);
+			      th.innerHTML = date_format(serverTime);
 		      }, 1000);
 	      }, returnFleetTimer          = () => {
-		      //Обращаемся к второй таблице (флоты)
 		      const table = document.querySelectorAll<HTMLElement>('table[width="530"]')[1];
-
+		      if (!table) return;
 
 		      if (table.querySelectorAll<HTMLElement>('tr').length > 1) {
 			      const tr = table.querySelectorAll<HTMLElement>('tr:not(:first-child)');
@@ -69,23 +45,25 @@
 			      //Перебор строк
 			      for (let i = 0; i < tr.length; i++) {
 				      // @ts-ignore
-				      const secondCell = tr[i].firstElementChild.nextElementSibling, //Вторая ячейка таблицы (где стрелки возврата)
+				      const $second_cell = tr[i].firstElementChild.nextElementSibling, //Вторая ячейка таблицы (где стрелки возврата)
 				            // @ts-ignore
-				            thirdCell  = secondCell.nextElementSibling, //3 ячейка с данными о полете
+				            thirdCell    = $second_cell.nextElementSibling, //3 ячейка с данными о полете
 				            // @ts-ignore
-				            fleetCount = thirdCell.firstElementChild.outerHTML, //Кол-во флота.
+				            fleetCount   = thirdCell.firstElementChild.outerHTML, //Кол-во флота.
 				            // @ts-ignore
-				            from       = thirdCell.firstElementChild.nextElementSibling.innerHTML, //откуда.
+				            from         = thirdCell.firstElementChild.nextElementSibling.innerHTML; //откуда.
+				      // @ts-ignore
+				      if (!thirdCell.firstElementChild.nextElementSibling.nextElementSibling) continue;
+				      // @ts-ignore
+				      const to       = (thirdCell.firstElementChild.nextElementSibling.nextElementSibling.nodeName === 'IMG') //Куда
+					      // @ts-ignore
+				                       ? thirdCell.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML //Если флот уже возвращается
+					      // @ts-ignore
+				                       : thirdCell.firstElementChild.nextElementSibling.nextElementSibling.innerHTML, //Если флот ещё не возвращается
 				            // @ts-ignore
-				            to         = (thirdCell.firstElementChild.nextElementSibling.nextElementSibling.nodeName === 'IMG') //Куда
-					            // @ts-ignore
-				                         ? thirdCell.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML //Если флот уже возвращается
-					            // @ts-ignore
-				                         : thirdCell.firstElementChild.nextElementSibling.nextElementSibling.innerHTML, //Если флот ещё не возвращается
+				            mission  = (thirdCell.lastChild.nodeValue !== null) ? thirdCell.lastChild.nodeValue.split(":")[1] : thirdCell.lastChild.outerHTML, //Миссия
 				            // @ts-ignore
-				            mission    = (thirdCell.lastChild.nodeValue !== null) ? thirdCell.lastChild.nodeValue.split(":")[1] : thirdCell.lastChild.outerHTML, //Миссия
-				            // @ts-ignore
-				            lastTime   = getSecondsFromRaw(tr[i].firstChild!.firstElementChild!.innerHTML); // Оставшееся время
+				            lastTime = get_seconds_from_raw(tr[i].firstChild!.firstElementChild!.innerHTML); // Оставшееся время
 
 				      for (let x = i + 1; x < tr.length; x++) {
 					      // @ts-ignore
@@ -109,15 +87,15 @@
 
 					      if (nextRowFleetCount === fleetCount && nextRowFrom === to && nextRowTo === from && nextRowMission === mission) {
 						      // @ts-ignore
-						      const nextRowTimestamp = parseInt(tr[x].firstChild.firstElementChild.attributes.alt.value);
-						      const date = new Date(getHumanTimestamp(nextRowTimestamp));
+						      const nextRowTimestamp = parseInt(tr[x].firstChild.firstElementChild.attributes.alt.value),
+						            date             = new Date(getHumanTimestamp(nextRowTimestamp));
 
 						      date.setSeconds(date.getSeconds() - (lastTime * 2));
 
 						      // @ts-ignore
 						      if (tr[i].firstChild.nextElementSibling.childElementCount === 1) {
 							      // @ts-ignore
-							      secondCell.innerHTML += '<div class="return_time" style="min-width: 75px;">' + formatDate(date) + '</div>'; //время при возврате
+							      $second_cell.innerHTML += `<div class="return_time" style="min-width: 75px;">${date_format(date)}</div>`; //время при возврате
 						      }
 
 						      break;
@@ -134,7 +112,7 @@
 			      for (let i = 0; i < r_fleets.length; i++) {
 				      const returnTime = new Date(r_fleets[i].innerHTML);
 				      returnTime.setSeconds(returnTime.getSeconds() + 2);
-				      r_fleets[i].innerHTML = formatDate(returnTime);
+				      r_fleets[i].innerHTML = date_format(returnTime);
 			      }
 		      }, 1000);
 	      };
@@ -142,6 +120,16 @@
 	updatePlaneraryServerTime();
 	returnFleetTimer();
 
-	checkAttack();
-	setInterval(checkAttack, 3000000);
+	//<editor-fold desc="check attack">
+	document.querySelectorAll<HTMLTableHeaderCellElement>(`th[width='360']`).forEach($th => {
+		if (!/с\s+миссией:\s+Атаковать/.test($th.textContent!)) return;
+		const $tr = $th.parentElement;
+		if (!($tr instanceof HTMLTableRowElement)) return;
+		const $a   = $tr.querySelector<HTMLLinkElement>(`:scope > th:nth-child(1) a[id]`)!,
+		      ts   = +$a.getAttribute(`alt`)! * 1000,
+		      date = new Date(+$a.getAttribute(`alt`)! * 1000);
+
+		console.log(ts, $a.textContent, date.toLocaleDateString(), date.toLocaleTimeString());
+	});
+	//</editor-fold>
 }
