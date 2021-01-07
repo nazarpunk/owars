@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d181a099-773b-4b14-bb0d-d3d673878b58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/extension/page/galaxy/galaxy.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extension/page/overview/overview.js" afterDir="false" />
+    <list default="true" id="d181a099-773b-4b14-bb0d-d3d673878b58" name="Default Changelist" comment="galaxy.ts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/mode/fleet/fleet.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/fleet/fleet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/mode/fleet/fleet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/fleet/fleet.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/option/menu/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/menu/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/option/menu/menu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/menu/menu.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/option/overview/overview.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/option/overview/overview.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/overview/overview.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/page/page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/page/galaxy/galaxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/galaxy/galaxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/page/galaxy/galaxy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/extension/page/galaxy/galaxy.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +129,7 @@
       <workItem from="1609716618906" duration="2175000" />
       <workItem from="1609719275424" duration="2777000" />
       <workItem from="1609722814096" duration="1173000" />
-      <workItem from="1609975236238" duration="4560000" />
+      <workItem from="1609975236238" duration="9435000" />
     </task>
     <task id="LOCAL-00001" summary="extension">
       <created>1599325694639</created>
@@ -188,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609111392483</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="galaxy.ts">
+      <created>1609982829127</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1609982829127</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +222,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="extension" />
     <MESSAGE value="overview.ts - refactor Dizzy shit" />
-    <option name="LAST_COMMIT_MESSAGE" value="overview.ts - refactor Dizzy shit" />
+    <MESSAGE value="galaxy.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="galaxy.ts" />
   </component>
 </project>
